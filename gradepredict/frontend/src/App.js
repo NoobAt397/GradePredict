@@ -12,6 +12,26 @@ function App() {
   // Assignment state
   const [assignmentText, setAssignmentText] = useState('');
 
+  // Sample data for testing
+  const loadSampleData = () => {
+    setRubric([
+      { name: 'Content & Accuracy', max_score: 40, description: 'Demonstrates understanding of the topic with accurate information' },
+      { name: 'Organization', max_score: 30, description: 'Clear structure with introduction, body, and conclusion' },
+      { name: 'Grammar & Style', max_score: 30, description: 'Proper grammar, spelling, and appropriate writing style' },
+    ]);
+    setAssignmentText(`The Water Cycle: Nature's Recycling System
+
+The water cycle is one of the most important processes on Earth. It describes how water moves continuously between the Earth's surface and the atmosphere.
+
+The cycle begins with evaporation. When the sun heats water in oceans, lakes, and rivers, some of it turns into water vapor and rises into the air. Plants also release water vapor through a process called transpiration.
+
+As water vapor rises higher into the atmosphere, it cools down and condenses into tiny water droplets. These droplets form clouds through a process called condensation. When the droplets combine and become heavy enough, they fall back to Earth as precipitation - rain, snow, sleet, or hail.
+
+Once precipitation reaches the ground, it can take several paths. Some water flows over the surface as runoff, eventually reaching streams, rivers, and oceans. Some seeps into the ground and becomes groundwater, which can be stored in aquifers for thousands of years.
+
+The water cycle is essential for life on Earth. It distributes fresh water around the planet, supports ecosystems, and helps regulate climate. Without this continuous cycle, life as we know it would not be possible.`);
+  };
+
   // Results state
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -84,6 +104,9 @@ function App() {
       <header>
         <h1>GradePredict</h1>
         <p>AI-Powered Assignment Grading</p>
+        <button onClick={loadSampleData} className="btn-sample">
+          Load Sample Essay
+        </button>
       </header>
 
       <main>
@@ -154,7 +177,14 @@ function App() {
             disabled={loading}
             className="btn-grade"
           >
-            {loading ? 'Grading...' : 'Grade Now'}
+            {loading ? (
+              <>
+                <span className="spinner"></span>
+                Grading...
+              </>
+            ) : (
+              'Grade Now'
+            )}
           </button>
           {error && <div className="error">{error}</div>}
         </section>

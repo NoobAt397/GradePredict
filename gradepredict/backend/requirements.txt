@@ -1,4 +1,0 @@
-groq
-flask
-flask-cors
-python-dotenv

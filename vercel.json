@@ -2,9 +2,7 @@
   "buildCommand": "cd gradepredict/frontend && npm install && npm run build",
   "outputDirectory": "gradepredict/frontend/build",
   "functions": {
-    "gradepredict/frontend/api/*.py": {
-      "runtime": "python3.9"
-    }
+    "gradepredict/frontend/api/*.py": {}
   },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/gradepredict/frontend/api/$1" }
